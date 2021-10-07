@@ -191,7 +191,7 @@ function get_items(wallet) {
 
 (async () => {
     // Inifinite loop
-    for (let i = 0; i < process.argv[1]; i++) {
+    for (let i = 0; i < process.argv[2]; i++) {
       // Generate wallet
       const { address, privateKey } = generateWallet();
 

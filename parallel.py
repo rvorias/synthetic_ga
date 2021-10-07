@@ -3,13 +3,13 @@ import time
 import sys
 import os
 
-N_OUTER_LOOPS = 10000
-N_INNER_LOOPS = 10000
+N_OUTER_LOOPS = 100000
+N_INNER_LOOPS = 100000
 
 if len(sys.argv) > 0:
     NUM_WORKERS = int(sys.argv[1])
 
-commands = [f"node {os.getcwd()}/synth.js"] * NUM_WORKERS
+commands = [f"node {os.getcwd()}/synth.js {N_INNER_LOOPS}"] * NUM_WORKERS
 
 for i in range(N_OUTER_LOOPS):
     print(i)
