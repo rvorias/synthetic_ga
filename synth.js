@@ -6,12 +6,11 @@ const keccak256 = require('keccak256')
 const web3 = require('web3');
 const secp256k1 = require("secp256k1");
 
-// const { toHex } = require("web3-utils");
+var BN = web3.utils.BN;
 
-/**
- * Inspired by @bokub's vanity-eth generation
- * @returns {Record<{ address: string, privateKey: string }>} wallet details
- */
+const bn_21 = new BN("21");
+const bn_16 = new BN("16");
+
 const generateWallet = () => {
   const privateKeyBytes = crypto.randomBytes(32);
   const pub = secp256k1.publicKeyCreate(privateKeyBytes, false).slice(1);
@@ -20,12 +19,6 @@ const generateWallet = () => {
     .digest()
     .slice(-20)
     .toString("hex");
-
-  // console.log(privateKeyBytes.toString("hex"));
-  // console.log(privateKeyBytes);
-  // console.log(pub.toString("hex"));
-  // console.log(pub);
-  // console.log(address);
 
   return {
     address,
@@ -80,7 +73,6 @@ const hand_hex = toHex("HAND");
 const neck_hex = toHex("NECK");
 const ring_hex = toHex("RING");
 
-
 function getWeapon(walletAddress) {
   return pluckName(walletAddress, weapon_hex); // WEAPON
 }
@@ -112,11 +104,6 @@ function getNeck(walletAddress) {
 function getRing(walletAddress) {
   return pluckName(walletAddress, ring_hex); //RING
 }
-
-var BN = web3.utils.BN;
-
-const bn_21 = new BN("21");
-const bn_16 = new BN("16");
 
 function modd(a, b) {
     return parseInt(a.umod(b).toString());
